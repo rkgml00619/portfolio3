@@ -1,0 +1,23 @@
+#footer {
+    display: flex;
+    justify-content: center;
+    padding: 60px 0;
+    box-sizing: border-box;
+    background: $colorGreen;
+    .center {
+        width: $center;
+        text-align: center;
+        img {
+            margin-bottom: 20px;
+        }
+        p {
+            color: #fff;
+            line-height: 1.4;
+            word-break: keep-all;
+        }
+        .copyright {
+            font-size: 14px;
+            margin-top: 20px;
+        }
+    }
+}

@@ -1,0 +1,51 @@
+#moveTop {
+    width: 60px; height: 60px;
+    position: fixed;
+    bottom: 50px; right: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid $colorOrange;
+    border-radius: 100%;
+    z-index: 9999;
+    transform: scale(0);
+    transition: all 0.5s;
+    &:hover {
+        background: $colorOrange;
+        transform: translateY(-6px);
+        a {
+            span.arrowIcon {
+                color: #fff;
+            }
+        }
+    }
+    a {
+        span.arrowIcon {
+            color: $colorOrange;
+            font-size: 30px;
+            transition: all 0.5s;
+        }
+    }
+}
+
+#moveTop.on {
+    transform: scale(1);
+}
+
+#moveTop.colorChange {
+    border: 2px solid #fff;
+    &:hover {
+        background: #fff;
+        a {
+            span.arrowIcon {
+                color: $colorOrange;
+            }
+        }
+    }
+    a {
+        span.arrowIcon {
+            color: #fff;
+        }
+    }
+}
+

@@ -1,0 +1,363 @@
+#container {  
+    .fixMenu {
+        position: fixed;
+        bottom: 40px; left: 0;
+        z-index: 999;
+        li {
+            margin: 4px 0;
+            &:hover {
+                a {
+                    width: 100px;
+                    color: $colorGreen;
+                    background: #fff;
+                }
+            }
+            a {
+                display: block;
+                background: transparent;
+                border: 1px solid $colorGreen;
+                border-left: 0;
+                border-radius: 0 100px 100px 0;
+                width: 0; height: 60px;
+                padding-right: 30px;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                color: #fff;
+                font-weight: 500;
+                overflow: hidden;
+                transition: all 0.5s;
+            }
+        }
+        li.on {
+            &:hover {
+                a {
+                    color: #fff;
+                }
+            }
+            a {
+                background: $colorGreen;
+                width: 100px;
+            }
+        }
+    }  
+    .cont1 {
+        height: 100vh;
+        position: relative;        
+        .swiper-wrapper {
+            width: 100%; height: 100%;
+            .swiper-slide {
+                width: 100%; height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                .bgImg {
+                    width: 100%; height: 100%;
+                    position: absolute;
+                }
+                .overlay {
+                    width: 100%; height: 100%;
+                    position: absolute;
+                    top: 0; left: 0;
+                    background: rgba(0,0,0,0.3);
+                    z-index: 5;
+                }
+                .center {
+                    width: $smallCenter;
+                    z-index: 20;
+                    .mainTitle {
+                        color: #fff;
+                        font-size: 130px;
+                        font-weight: 800;
+                        line-height: 1.1;
+                        margin-bottom: 60px;
+                        display: flex;
+                        .fixText {
+                            margin-right: 40px;
+                        }
+                        .roller {
+                            height: 176px;
+                            overflow: hidden;
+                            display: flex;
+                            flex-direction: column;
+                            position: relative;
+                            span {
+                                animation: textRoller 3s infinite;
+                            }
+                        }
+
+                        @keyframes textRoller {
+                            0% { transform: translateY(0);}
+                            50% { transform: translateY(-176px);}
+                            0% { transform: translateY(0);}
+                        }
+                    }
+                    .subTitle {
+                        color: #fff;
+                        font-size: 40px;
+                        line-height: 1.4;
+                    }
+                }
+            }
+        }
+    }
+
+    .sectionTextWrap {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 60px;
+        .sectionTitle {
+            color: #111;
+            font-size: 80px;
+            font-weight: 800;
+        }
+        .moreBtn {
+            color: $colorOrange;
+            font-weight: 400;
+            font-size: 16px;
+            text-transform: uppercase;
+            border: 1px solid $colorOrange;
+            width: 150px; height: 50px;
+            box-sizing: border-box;
+            position: relative;
+            border-radius: 5px;
+            &:hover {
+                .moreBtnText {
+                    color: #fff;
+                }
+                .moreBtnBg {
+                    width: 100%;
+                }
+            }
+            .moreBtnText {
+                display: block;
+                width: 100%;
+                position: absolute;
+                top: 50%; left:0;
+                transform: translateY(-50%);
+                z-index: 20;
+                color: $colorOrange;
+                text-align: center;
+                transition: all 0.5s;
+            }
+            .moreBtnBg {
+                display: block;
+                width: 0; height: 100%;
+                position: absolute;
+                top: 0; left: 0;
+                background: $colorOrange;
+                transition: all 0.5s;
+            }
+        }
+    }
+
+    .cont2 {
+        display: flex;
+        justify-content: center;
+        padding: 120px 0;
+        border-bottom: 1px solid #ccc;
+        .center {
+            width: $smallCenter;           
+            .eventList {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                .list {
+                    width: calc(33.333333% - 40px);
+                    overflow: hidden;
+                    margin-right: 40px;
+                    margin-bottom: 40px;
+                    border-radius: 20px;
+                    // box-shadow: 0px 10px 20px rgba(0,0,0,0.05);
+                    border: 1px solid rgba(234, 105, 71, 0.2);
+                    transition: all 0.5s;
+                    &:nth-child(3n) {
+                        margin-right: 0;
+                    }
+                    &:hover {
+                        box-shadow: 0px 10px 20px rgba(0,0,0,0.2);
+                        border: 1px solid rgba(234, 105, 71, 1);
+                        .imgWrap {
+                            img {
+                                transform: scale(1.1);
+                            }
+                        }
+                        .textWrap {
+                            &::before {                                
+                                width: 100%;
+                            }
+                            h3, .menuInfo p { 
+                                opacity: 1;
+                            }
+                        }
+                    }
+                    .imgWrap {
+                        width: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        img {
+                            width: 100%;
+                            transition: all 0.5s;
+                        }
+                    }
+                    .textWrap {
+                        width: 100%;
+                        padding: 40px 0;
+                        box-sizing: border-box;
+                        color: #000;
+                        position: relative;
+                        &::before {
+                            content: "";
+                            display: block;
+                            width: 0; height: 2px;
+                            background: $colorOrange;
+                            position: absolute;
+                            top: 0; left: 0;
+                            transition: all 0.5s;
+                        }
+                        h3 {
+                            font-size: 30px;
+                            text-align: center;
+                            margin-bottom: 20px;
+                            color: $colorOrange;
+                            letter-spacing: -0.5px;
+                            opacity: 0.5;
+                            transition: all 0.5s;
+                        }
+                        .menuInfo {
+                            display: flex;
+                            justify-content: center;
+                            p {
+                                margin-right: 20px;
+                                font-size: 18px;
+                                opacity: 0.5;
+                                transition: all 0.5s;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .cont3 {
+        display: flex;
+        justify-content: center;
+        padding: 120px 0;
+        .center {
+            width: $smallCenter;            
+            .eventList {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                .list {
+                    width: calc(33.333333% - 30px);
+                    border-radius: 20px;
+                    overflow: hidden;
+                    margin-right: 30px;
+                    margin-bottom: 60px;
+                    position: relative;
+                    &:nth-child(3n) {
+                        margin-right: 0;
+                    }
+                    &:hover {
+                        .textWrap {
+                            opacity: 1;
+                        }
+                    }
+                    .imgWrap {
+                        width: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        img {
+                            width: 100%;
+                        }
+                    }
+                    .textWrap {
+                        width: 100%; height: 100%;
+                        background: rgba(255, 255, 255, 1);
+                        border: 2px solid #ea6947;
+                        border-radius: 20px;
+                        box-sizing: border-box;
+                        position: absolute;
+                        top: 0; left: 0;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: flex-end;
+                        padding: 40px;
+                        // text-align: center;
+                        opacity: 0;
+                        transition: all 0.5s;
+                        h3 {
+                            width: 100%;
+                            font-size: 28px;
+                            line-height: 1.2;
+                            letter-spacing: -0.5px;
+                            word-break: keep-all;
+                            margin-bottom: 40px;
+                            color: $colorOrange;
+                        }
+                        p {
+                            width: 100%;
+                            font-size: 18px;
+                            line-height: 1.4;
+                            word-break: keep-all;
+                            color: #000;
+                            margin-bottom: 40px;
+                        }
+                        span.arrowIcon {
+                            display: block;
+                            width: 60px; height: 60px;
+                            background: $colorOrange;
+                            color: #fff;
+                            border-radius: 100%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            font-size: 30px;
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+}
+
+.swiper-button-prev {
+    left: 50px;
+    &:hover {
+        &::after {
+            color: rgba(255,255,255,1);
+        }
+    }
+}
+.swiper-button-next {
+    right: 50px;
+    &:hover {
+        &::after {
+            color: rgba(255,255,255,1);
+        }
+    }
+}
+.swiper-button-next:after, .swiper-button-prev:after {
+    color: rgba(255,255,255,0.4);
+    font-size: 60px;
+    transition: all 0.5s;
+}
+.swiper-horizontal>.swiper-pagination-progressbar, .swiper-pagination-progressbar.swiper-pagination-horizontal {
+    height: 6px;
+    top: calc(100% - 6px);
+    background: rgba(0,0,0,0.6);
+}
+.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+    background: $colorOrange;
+}

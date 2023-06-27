@@ -1,0 +1,207 @@
+<%- include('common/header.ejs', jsFiles=["https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js", "/js/main/swiper.js", "/js/main/main.js"], cssFiles=["https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"]) %>
+
+<div id="container" class="main">
+    <ul class="fixMenu">
+        <li class="on">
+            <a class="poppins" href="#">Main</a>
+        </li>
+        <li>
+            <a class="poppins" href="#">Signature</a>
+        </li>
+        <li>
+            <a class="poppins" href="#">Event</a>
+        </li>
+    </ul>
+
+    <div class="swiper cont1 cont">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">
+                <div class="overlay"></div>
+                <img class="bgImg" src="/img/main_bg.jpg">
+                <div class="center">
+                    <h2 class="poppins mainTitle">
+                        Eat Fresh,<br>EatTrendy!
+                    </h2>
+                    <p class="subTitle">건강하게, 맛있게, 트렌디하게<br>당신의 즐거운 한끼 식사를 책임질게요.</p>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="overlay"></div>
+                <img class="bgImg" src="/img/main_bg2.jpg">
+                <div class="center">
+                    <h2 class="poppins mainTitle">
+                        We care<br>for your health.
+                    </h2>
+                    <p class="subTitle">가장 신선한 채소와 가장 깨끗한 물,<br>당신의 건강을 위해 항상 진심을 다해 고민하고 있어요.</p>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="overlay"></div>
+                <img class="bgImg" src="/img/main_bg3.jpg">
+                <div class="center">
+                    <h2 class="poppins mainTitle">
+                        For us & Earth,<br>Bring your own bowl
+                    </h2>
+                    <p class="subTitle">건강한 우리와 지구를 위해,<br>다회용기 사용으로 조금씩 실천해보아요.</p>
+                </div>
+            </div>
+        </div>
+        <!-- If we need pagination -->
+        <div class="swiper-pagination"></div>
+
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+        <!-- If we need scrollbar -->
+        <div class="swiper-scrollbar"></div>
+    </div>
+
+    <div class="cont2 cont">
+        <div class="center">
+            <div class="sectionTextWrap">
+                <h2 class="sectionTitle poppins">Signature</h2>
+                <a class="moreBtn poppins" href="#">
+                    <span class="moreBtnText">More View</span>
+                    <span class="moreBtnBg"></span>
+                </a>
+            </div>
+            <div class="eventList">
+                <div class="list">
+                    <a href="#">
+                        <div class="imgWrap">
+                            <img src="/img/menu1.png" alt="">
+                        </div>
+                        <div class="textWrap">
+                            <h3>현미밥 + 연어</h3>
+                            <div class="menuInfo">
+                                <p>칼로리 : 515kcal</p>
+                                <p>단백질 : 28.37g</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="list">
+                    <a href="#">
+                        <div class="imgWrap">
+                            <img src="/img/menu2.png" alt="">
+                        </div>
+                        <div class="textWrap">
+                            <h3>야채만 + 두부</h3>
+                            <div class="menuInfo">
+                                <p>칼로리 : 377kcal</p>
+                                <p>단백질 : 14.7g</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="list">
+                    <a href="#">
+                        <div class="imgWrap">
+                            <img src="/img/menu3.png" alt="">
+                        </div>
+                        <div class="textWrap">
+                            <h3>메밀면 + 불고기</h3>
+                            <div class="menuInfo">
+                                <p>칼로리 : 454kcal</p>
+                                <p>단백질 : 21.97g</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cont3 cont">
+        <div class="center">
+            <div class="sectionTextWrap">
+                <h2 class="sectionTitle poppins">Poke Event</h2>
+                <a class="moreBtn poppins" href="#">
+                    <span class="moreBtnText">More View</span>
+                    <span class="moreBtnBg"></span>
+                </a>
+            </div>
+            <div class="eventList">
+                <div class="list">
+                    <a href="#">
+                        <div class="imgWrap">
+                            <img src="/img/event1.jpg" alt="">
+                        </div>
+                        <div class="textWrap">
+                            <h3>2023 세계 환경의 날 '비건 올데이' 이벤트</h3>
+                            <p>세계 환경의 날을 맞이하여 지구와 우리의 건강을 위한 Vegan All Day, 포케올데이 제로웨이스트 친환경 굿즈 증정</p>
+                            <span class="material-symbols-outlined arrowIcon">arrow_forward</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="list">
+                    <a href="#">
+                        <div class="imgWrap">
+                            <img src="/img/event2.jpg" alt="">
+                        </div>
+                        <div class="textWrap">
+                            <h3>2023 세계 환경의 날 '비건 올데이' 이벤트</h3>
+                            <p>세계 환경의 날을 맞이하여 지구와 우리의 건강을 위한 Vegan All Day, 포케올데이 제로웨이스트 친환경 굿즈 증정</p>
+                            <span class="material-symbols-outlined arrowIcon">arrow_forward</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="list">
+                    <a href="#">
+                        <div class="imgWrap">
+                            <img src="/img/event3.jpg" alt="">
+                        </div>
+                        <div class="textWrap">
+                            <h3>2023 세계 환경의 날 '비건 올데이' 이벤트</h3>
+                            <p>세계 환경의 날을 맞이하여 지구와 우리의 건강을 위한 Vegan All Day, 포케올데이 제로웨이스트 친환경 굿즈 증정</p>
+                            <span class="material-symbols-outlined arrowIcon">arrow_forward</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="list">
+                    <a href="#">
+                        <div class="imgWrap">
+                            <img src="/img/event4.jpg" alt="">
+                        </div>
+                        <div class="textWrap">
+                            <h3>2023 세계 환경의 날 '비건 올데이' 이벤트</h3>
+                            <p>세계 환경의 날을 맞이하여 지구와 우리의 건강을 위한 Vegan All Day, 포케올데이 제로웨이스트 친환경 굿즈 증정</p>
+                            <span class="material-symbols-outlined arrowIcon">arrow_forward</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="list">
+                    <a href="#">
+                        <div class="imgWrap">
+                            <img src="/img/event5.jpg" alt="">
+                        </div>
+                        <div class="textWrap">
+                            <h3>2023 세계 환경의 날 '비건 올데이' 이벤트</h3>
+                            <p>세계 환경의 날을 맞이하여 지구와 우리의 건강을 위한 Vegan All Day, 포케올데이 제로웨이스트 친환경 굿즈 증정</p>
+                            <span class="material-symbols-outlined arrowIcon">arrow_forward</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="list">
+                    <a href="#">
+                        <div class="imgWrap">
+                            <img src="/img/event6.jpg" alt="">
+                        </div>
+                        <div class="textWrap">
+                            <h3>2023 세계 환경의 날 '비건 올데이' 이벤트</h3>
+                            <p>세계 환경의 날을 맞이하여 지구와 우리의 건강을 위한 Vegan All Day, 포케올데이 제로웨이스트 친환경 굿즈 증정</p>
+                            <span class="material-symbols-outlined arrowIcon">arrow_forward</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('common/moveTop.ejs') %>
+</div>
+
+
+<%- include('common/footer.ejs') %>
