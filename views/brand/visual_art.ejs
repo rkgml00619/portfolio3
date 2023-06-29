@@ -1,0 +1,51 @@
+<%- include('../common/header.ejs', jsFiles=["/js/brand/visual_art.js"], cssFiles=[]) %>
+
+<div id="container" class="visual_art">
+    <div class="cont1 cont">
+        <div class="center">
+            <h2 class="topTitle poppins">VISUAL ART</h2>
+            <h3 class="topSubTitle">저희는 예쁜 것을 좋아해요<br>사소한 것 하나까지</h3>
+        </div>
+    </div>
+
+    <div class="cont2 cont">
+        <div class="center">
+            <div class="tabWrap">
+                <div class="tabMenu">
+                    <a class="tabBtn poppins on" href="#">Poster</a>
+                    <a class="tabBtn poppins" href="#">Goods</a>
+                </div>
+                <div class="tabconts">
+                    <div class="tabListWrap on poster">
+                        <% for( let i = 1; i < 12; i++ ) { %>
+                            <div class="tabList poster">
+                                <a href="/img/brand/visual_art/poster/poster<%-i%>.jpg" download="">
+                                    <div class="overlay"></div>
+    
+                                    <img src="/img/brand/visual_art/poster/poster<%-i%>.jpg">
+    
+                                    <span class="downBtn poppins">
+                                        Download
+                                    </span>
+                                </a>
+                            </div>
+                        <% } %>
+                    </div>
+                    <div class="tabListWrap goods">
+                        <% for( let i = 1; i < 11; i++ ) { %>
+                            <div class="tabList goods">
+                                <img src="/img/brand/visual_art/goods/goods<%-i%>.jpg">
+                                <h3 class="listText">포케올데이 <span></span></h3>
+                            </div>  
+                        <% } %> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../common/moveTop.ejs') %>
+</div>
+
+
+<%- include('../common/footer.ejs') %>

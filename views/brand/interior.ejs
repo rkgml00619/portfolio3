@@ -1,0 +1,71 @@
+<%- include('../common/header.ejs', jsFiles=["https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js","/js/brand/interior.js"], cssFiles=["https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"]) %>
+
+<div id="container" class="interior">
+    <div class="cont1 cont">
+        <div class="center">
+            <h2 class="topTitle poppins">INTERIOR</h2>
+            <div class="contWrap">
+                <div class="left">
+                    <img src="/img/brand/interior.jpg" alt="">
+                </div>
+                <div class="right">
+                    <h3>맛, 가격, 그리고 공간<br>
+                        고객님이 기억하는 전부입니다.</h3>
+                    <div class="rightContWrap">
+                        <div class="rightConts">
+                            <h5>매장별 커스텀 인테리어</h5>
+                            <p>
+                                모든 매장은 포케올데이의 색을 띄지만 동시에 모두 달라요.
+                                각 지역에 맞춘 인테리어 차별화로 전국 포케올데이 각각의 특색을 느껴보세요.
+                            </p>
+                        </div>
+                        <div class="rightConts">
+                            <h5>작은 디테일 차이</h5>
+                            <p>
+                                매장의 유니크한 구도, 소품, 굿즈는 세심한 손길이 하나하나 녹아있습니다. 트렌디함을 놓치지 않기 위한 끊임없는 고민의 흔적들을 직접 확인하세요.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cont2 cont">
+        <h2 class="mainTitle poppins">Interior Design</h2>
+        <div class="swiper interior">
+            <div class="slideWrap swiper-wrapper">
+                <% for( let i = 1; i < 11; i++ ) { %>
+                    <div class="list swiper-slide">
+                        <img src="/img/brand/interior/interior<%-i%>.jpg">
+                    </div>
+                <% } %>
+            </div>
+
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev interior"></div>
+            <div class="swiper-button-next interior"></div>
+        </div>
+    </div>
+    <div class="cont3 cont">
+        <h2 class="mainTitle poppins">Vintage Items</h2>
+        <div class="swiper items">
+            <div class="slideWrap swiper-wrapper">
+                <% for( let i = 1; i < 11; i++ ) { %>
+                    <div class="list swiper-slide">
+                        <img src="/img/brand/items/items<%-i%>.jpg">
+                    </div>
+                <% } %>
+            </div>
+
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+    </div>
+
+    <%- include('../common/moveTop.ejs') %>
+</div>
+
+
+<%- include('../common/footer.ejs') %>

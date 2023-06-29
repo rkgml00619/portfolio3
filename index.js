@@ -91,21 +91,36 @@ const storage = multer.diskStorage({
 //upload는 위의 설정사항을 담은 변수(상수) 
 const upload = multer({ storage: storage })
 
+
+
 /*경로지정*********************************************************************/
 
 
 // 메인 페이지
 app.get('/', (req, res) => {
-  res.render("index.ejs")
+  res.render("index.ejs", {login: req.user})
 })
 
-// 어바웃어스 페이지
-app.get("/about", (req, res)=>{ 
-  db.collection("media").find().toArray((err,result)=>{
-    res.render("about.ejs", {login: req.user, data: result})
-    console.log(result);
-  })
+// brand의 about us 페이지
+app.get("/brand/about", (req, res)=>{   
+  res.render("brand/about.ejs", {login: req.user})
 })
+// brand의 interior 페이지
+app.get("/brand/interior", (req, res)=>{   
+  res.render("brand/interior.ejs", {login: req.user})
+})
+// brand의 visual_art 페이지
+app.get("/brand/visualart", (req, res)=>{   
+  res.render("brand/visual_art.ejs", {login: req.user})
+})
+
+// menu의 signature 페이지
+app.get("/menu/signature", (req, res)=>{   
+  res.render("menu/signature.ejs", {login: req.user})
+})
+
+
+
 // 어바웃어스 미디어 등록 경로
 app.get("/mediaUpload", (req, res)=>{
   db.collection("count").findOne({title: "미디어"}, (err, mediaNum)=>{

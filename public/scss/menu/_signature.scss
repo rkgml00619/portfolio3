@@ -1,0 +1,354 @@
+$red : #ea6947;
+$yellow : #fec201;
+$green : #5ac488;
+
+#container.visual_art { 
+    overflow: hidden;
+    .cont1 {
+        padding: 100px 0 40px;
+        display: flex;
+        justify-content: center;
+        .center {
+            width: $center;
+            .topTitle {
+                font-size: 80px;
+                font-weight: 800;
+                line-height: 1.3;
+                margin-bottom: 30px;
+                text-align: center;
+            }
+            .topSubTitle {
+                font-size: 34px;
+                margin-bottom: 60px;
+                line-height: 1.3;
+                letter-spacing: -0.5px;
+                text-align: center;
+            }
+        }
+    }
+    .cont2 {
+        display: flex;
+        justify-content: center;
+        padding-bottom: 80px;
+        .center {
+            width: $smallCenter;
+            .tabWrap {
+                .tabMenu {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-bottom: 60px;
+                    .tabBtn {
+                        display: inline-block;
+                        padding: 20px 60px;
+                        border: 1px solid $colorOrange;
+                        color: $colorOrange;
+                        background: #fff;
+                        font-size: 24px;
+                        font-weight: 600;
+                        text-transform: uppercase;
+                        line-height: 1.3;
+                        margin-bottom: 40px;
+                        text-align: center;
+                        margin: 0 10px;
+                        transition: all 0.5s;
+                        &:hover {
+                            border: 1px solid $colorGreen;
+                            color: $colorGreen;
+                        }
+                    }
+                    .tabBtn.on {
+                        border: 1px solid $colorGreen;
+                        background: $colorGreen;
+                        color: #fff;
+                    }
+                }
+                .tabconts {
+                    position: relative;
+                    .tabListWrap {
+                        display: none;
+                        grid-template-columns: repeat(auto-fill, calc(33.333333% - 20px));
+                        grid-gap: 20px;
+                        justify-content: space-between;
+                        position: absolute;
+                        width: 100%;
+                        opacity: 0;
+                        transition: all 0.5s;
+                        .tabList {
+                            // width: calc(33.333333% - 20px);
+                            // margin-right: 20px;
+                            margin-bottom: 20px;
+                            position: relative;
+                            overflow: hidden;
+                            &:nth-child(3n) {
+                                margin-right: 0;
+                            }
+                            &::after {
+                                content: "";
+                                flex: auto;
+                            }
+                            img {
+                                width: 100%;
+                            }
+                        }
+                        .tabList.poster {
+                            transition: all 0.5s;
+                            &:hover {
+                                .overlay {
+                                    background: rgba(0,0,0,0.6);
+                                }
+                                .downBtn {
+                                    opacity: 1;
+                                    transform: translate(-50%, -50%) scale(1);
+                                    border: 1px solid $colorOrange;
+                                    background: $colorOrange;
+                                    color: #fff;
+                                }
+                            }
+                            .downBtn {
+                                display: inline-block;
+                                padding: 20px 30px;
+                                border: 1px solid #fff;
+                                position: absolute;
+                                top: 50%; left: 50%;
+                                transform: translate(-50%, -50%) scale(0);
+                                color: #fff;
+                                font-size: 18px;
+                                z-index: 20;
+                                opacity: 0;
+                                transition: all 0.5s;
+                                &:hover {
+                                    border-radius: 0 0 20px 0;
+                                }
+                            }
+                            .overlay {
+                                width: 100%; height: 100%;
+                                position: absolute;
+                                top: 0; left: 0;
+                                background: rgba(0,0,0,0);
+                                transition: all 0.5s;
+                            }
+                        }
+                        .tabList.goods {
+                            cursor: pointer;
+                            &:hover {
+                                h3 {
+                                    left: 0;
+                                    opacity: 1;
+                                }
+                            }
+                            h3 {
+                                width: auto; height: auto;
+                                position: absolute;
+                                bottom: 0; left: -90%;
+                                display: flex;
+                                align-items: center;
+                                padding: 20px 40px;
+                                line-height: 1.3;
+                                word-break: keep-all;
+                                box-sizing: border-box;
+                                font-size: 20px;
+                                font-weight: 300;
+                                color: #fff;
+                                background: $colorOrange;
+                                opacity: 0;
+                                transition: all 0.5s;
+                                span {
+                                    margin-left: 10px;
+                                }
+                            }
+                        }
+                    }
+                    .tabListWrap.on {
+                        display: grid;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    #container.visual_art { 
+        .cont1 {
+            padding: 100px 0 20px;
+            .center {
+                width: 90%;
+                .topTitle {
+                    font-size: 70px;
+                    margin-bottom: 40px;
+                }
+                .topSubTitle {
+                    font-size: 34px;
+                    margin-bottom: 60px;
+                    line-height: 1.3;
+                    letter-spacing: -0.5px;
+                    text-align: center;
+                }
+            }
+        }
+        .cont2 {
+            padding-bottom: 100px;
+            .center {
+                width: 90%;
+                .tabWrap {
+                    .tabMenu {
+                        .tabBtn {
+                            padding: 20px 60px;
+                            font-size: 22px;
+                        }
+                        .tabBtn.on {
+                            border: 1px solid $colorGreen;
+                            background: $colorGreen;
+                            color: #fff;
+                        }
+                    }
+                    .tabconts {
+                        .tabListWrap {
+                            .tabList.poster {
+                                &:hover {
+                                    .downBtn {
+                                        transform: translate(0, 0) scale(1);
+                                    }
+                                }
+                                .downBtn {
+                                    padding: 15px 20px;
+                                    top: calc(100% - 60px); left: 4%;
+                                    transform: translate(0, 0) scale(1);
+                                    font-size: 14px;
+                                    opacity: 1;
+                                    box-shadow: 5px 5px 10px rgba(0,0,0,0.4);
+                                    text-shadow: 0 0 10px rgba(0,0,0,0.8);
+                                    backdrop-filter: blur(20px);
+                                }
+                            }
+                            .tabList.goods {
+                                h3 {
+                                    position: relative;
+                                    left: 0;
+                                    padding: 15px 30px;
+                                    font-size: 16px;
+                                    font-weight: 300;
+                                    display: block;
+                                    text-align: center;
+                                    opacity: 1;
+                                    span {
+                                        margin-left: 5px;
+                                    }
+                                }
+                            }
+                        }
+                        .tabListWrap.on {
+                            display: grid;
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 820px) {
+    #container.visual_art { 
+        .cont1 {
+            padding: 100px 0 0;
+        }
+        .cont2 .center .tabWrap .tabconts .tabListWrap {
+            display: none;
+            grid-template-columns: repeat(auto-fill, calc(33.333333% - 10px));
+            grid-gap: 10px;
+            justify-content: space-between;
+            position: absolute;
+            width: 100%;
+            opacity: 0;
+            transition: all 0.5s;
+            .tabList {
+                margin-bottom : 10px
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #container.visual_art { 
+        .cont1 {
+            padding: 60px 0 40px;
+            .center {
+                width: 90%;
+                .topTitle {
+                    font-size: 40px;
+                    margin-bottom: 20px;
+                }
+                .topSubTitle {
+                    font-size: 24px;
+                    margin-bottom: 20px;
+                }
+            }
+        }
+        .cont2 {
+            padding-bottom: 80px;
+            .center {
+                width: 90%;
+                .tabWrap {
+                    .tabMenu {
+                        margin-bottom: 40px;
+                        .tabBtn {
+                            padding: 15px 35px;
+                            font-size: 16px;
+                            margin: 0 5px;
+                        }
+                    }
+                    .tabconts {
+                        .tabListWrap {
+                            display: none;
+                            grid-template-columns: repeat(auto-fill, calc(50% - 5px));
+                            grid-gap: 5px;
+                            width: 100%;
+                            .tabList.poster {
+                                &:hover {
+                                    .overlay {
+                                        border-radius: 0 0 20px 0;
+                                    }
+                                }
+                                .downBtn {
+                                    position: relative;
+                                    display: block;
+                                    padding: 15px 20px;
+                                    color: #000;
+                                    top: 0; left: 0;
+                                    border: 0;
+                                    background: $colorGreen;
+                                    font-size: 14px;
+                                    color: #fff;
+                                    text-align: center;
+                                    box-shadow: none;
+                                    text-shadow: none;
+                                    backdrop-filter: blur(0);
+                                }
+                            }
+                            .tabList.goods {
+                                h3 {
+                                    position: relative;
+                                    left: 0;
+                                    height: 60px;
+                                    padding: 0 15px;
+                                    font-size: 14px;
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: center;
+                                    justify-content: center;
+                                    opacity: 1;
+                                    span {
+                                        margin-left: 0;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
