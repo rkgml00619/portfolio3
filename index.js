@@ -118,6 +118,23 @@ app.get("/brand/visualart", (req, res)=>{
 app.get("/menu/signature", (req, res)=>{   
   res.render("menu/signature.ejs", {login: req.user})
 })
+// menu의 poke 페이지
+app.get("/menu/poke", (req, res)=>{   
+  res.render("menu/poke.ejs", {login: req.user})
+})
+// menu의 drink 페이지
+app.get("/menu/drink", (req, res)=>{   
+  res.render("menu/drink.ejs", {login: req.user})
+})
+// menu의 side 페이지
+app.get("/menu/side", (req, res)=>{   
+  res.render("menu/side.ejs", {login: req.user})
+})
+
+// nutrition 페이지
+app.get("/nutrition", (req, res)=>{   
+  res.render("etc/nutrition.ejs", {login: req.user})
+})
 
 
 

@@ -1,0 +1,37 @@
+<%- include('../common/header.ejs', jsFiles=["/js/menu/side.js"], cssFiles=[]) %>
+
+<div id="container" class="side">
+    <div class="cont1 cont">
+        <div class="center">
+            <h2 class="topTitle poppins">SIDE</h2>
+            <p class="topSubTitle">
+                POKE ALL DAY의 부담없이 즐길 수 있는<br>
+                맛있고 건강한 사이드 메뉴입니다.
+            </p>
+            <%- include('menuLocation.ejs') %>
+        </div>
+    </div>
+
+    <div class="cont2 chooseMenu cont">
+        <div class="center">
+            <div class="menuList">
+                <% for( let i = 0; i < 7; i++ ) { %>
+                    <div class="list">
+                        <div class="imgWrap">
+                            <img src="">
+                        </div>
+                        <div class="textWrap">
+                            <h3></h3>
+                            <p></p>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../common/moveTop.ejs') %>
+</div>
+
+
+<%- include('../common/footer.ejs') %>

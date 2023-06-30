@@ -1,0 +1,174 @@
+<%- include('../common/header.ejs', jsFiles=["/js/menu/poke.js"], cssFiles=[]) %>
+
+<div id="container" class="poke">
+    <div class="cont1 cont">
+        <div class="center">
+            <h2 class="topTitle poppins">POKE</h2>
+            <p class="topSubTitle">
+                POKE ALL DAY에서 맛도 건강도 사로잡은<br>
+                나에게 딱 맞는 메뉴를 만들어 보세요.
+            </p>
+            <%- include('menuLocation.ejs') %>
+        </div>
+    </div>
+
+    <div class="cont2 chooseMenu cont">
+        <div class="center">
+            <div class="stepWrap">
+                <div class="circle">
+                    <span class="step poppins">STEP</span>
+                    <span class="number poppins">01</span>
+                </div>
+                <h3 class="poppins">
+                    <span class="material-symbols-outlined checkIcon">check_box</span>
+                    Choose One Base
+                </h3>
+            </div>
+            <div class="menuList">
+                <div class="list">
+                    <div class="imgWrap">
+                        <img src="/img/menu/poke/base/rice.png">
+                    </div>
+                    <div class="textWrap">
+                        <h3>현미밥</h3>
+                        <p>Brown Rice</p>
+                    </div>
+                </div>
+                <div class="list">
+                    <div class="imgWrap">
+                        <img src="/img/menu/poke/base/noodle.png">
+                    </div>
+                    <div class="textWrap">
+                        <h3>메밀면</h3>
+                        <p>Soba Noodle</p>
+                    </div>
+                </div>
+                <div class="list">
+                    <div class="imgWrap">
+                        <img src="/img/menu/poke/base/vegeOnly.png">
+                    </div>
+                    <div class="textWrap">
+                        <h3>야채만</h3>
+                        <p>Vegetables Only</p>
+                    </div>
+                </div>
+                <div class="list">
+                    <div class="imgWrap">
+                        <img src="/img/menu/poke/base/veganRice.png">
+                    </div>
+                    <div class="textWrap">
+                        <h3>비건(현미밥)</h3>
+                        <p>Vegan(Brown Rice)</p>
+                    </div>
+                </div>
+                <div class="list">
+                    <div class="imgWrap">
+                        <img src="/img/menu/poke/base/veganNoodle.png">
+                    </div>
+                    <div class="textWrap">
+                        <h3>비건(메밀면)</h3>
+                        <p>Vegan(Soba Noodle)</p>
+                    </div>
+                </div>
+                <div class="list">
+                    <div class="imgWrap">
+                        <img src="/img/menu/poke/base/vegeOnly.png">
+                    </div>
+                    <div class="textWrap">
+                        <h3>비건(야채만)</h3>
+                        <p>Vegan(Vegetables Only)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cont3 chooseMenu cont">
+        <div class="center">
+            <div class="stepWrap">
+                <div class="circle">
+                    <span class="step poppins">STEP</span>
+                    <span class="number poppins">02</span>
+                </div>
+                <h3 class="poppins">
+                    <span class="material-symbols-outlined checkIcon">check_box</span>
+                    Choose One Main Topping
+                </h3>
+            </div>
+            <div class="menuList">
+                <% for( let i = 0; i < 11; i++ ) { %>
+                    <div class="list">
+                        <div class="imgWrap">
+                            <img src="">
+                        </div>
+                        <div class="textWrap">
+                            <h3></h3>
+                            <p></p>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+    <div class="cont4 chooseMenu cont">
+        <div class="center">
+            <div class="stepWrap">
+                <div class="circle">
+                    <span class="step poppins">STEP</span>
+                    <span class="number poppins">02</span>
+                </div>
+                <h3 class="poppins">
+                    <span class="material-symbols-outlined checkIcon">check_box</span>
+                    Choose One Souce
+                </h3>
+            </div>
+            <div class="menuList">
+                <% for( let i = 0; i < 7; i++ ) { %>
+                    <div class="list">
+                        <div class="imgWrap">
+                            <img src="">
+                        </div>
+                        <div class="textWrap">
+                            <h3></h3>
+                            <p></p>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+    <div class="cont5 chooseMenu cont">
+        <div class="center">
+            <div class="stepWrap">
+                <div class="circle">
+                    <span class="step poppins">STEP</span>
+                    <span class="number poppins">04</span>
+                </div>
+                <h3 class="poppins">
+                    <span class="material-symbols-outlined checkIcon">check_box</span>
+                    Add Toppings
+                </h3>
+            </div>
+            <div class="menuList">
+                <% for( let i = 0; i < 10; i++ ) { %>
+                    <div class="list">
+                        <div class="imgWrap">
+                            <img src="">
+                        </div>
+                        <div class="textWrap">
+                            <h3></h3>
+                            <p></p>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../common/moveTop.ejs') %>
+</div>
+
+
+<%- include('../common/footer.ejs') %>

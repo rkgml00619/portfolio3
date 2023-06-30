@@ -151,3 +151,17 @@ function detectBottom() {
 }
 
 
+// 메뉴 서브페이지들 제어
+const menuLocation = document.querySelectorAll("#container > div .menuLocation > li");
+const menuPage = ["signature", "poke", "drink", "side"];
+
+for(i = 0; i < menuPage.length; i++){
+    if(locationUrl.includes(menuPage[i])){
+        menuLocation.forEach(function(menuPage){
+            menuPage.classList.remove("on");
+        });
+        menuLocation[i].classList.add("on");
+    }
+}
+
+
