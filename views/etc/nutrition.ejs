@@ -21,7 +21,23 @@
             </div>
             <div class="bottom">
                 <div class="selectWrap">
-                    <div class="selectBtns">
+                    <% for( let i = 0; i < nutrition.length; i++ ) { %>
+                        <div class="selectBtns">
+                            <h5 class="label poppins"><%- nutrition[i].kind %></h5>
+                            <div class="selectList">
+                                <a class="selBtn" href="#">
+                                    <%- nutrition[i].defaultText %>
+                                    <span class="material-symbols-outlined">expand_more</span>
+                                </a>
+                                <ul class="option">
+                                    <% for( let a = 0; a < nutrition[i].list.length; a++ ) { %>
+                                        <li><%- nutrition[i].list[a]%></li>
+                                    <% } %>
+                                </ul>
+                            </div>
+                        </div>
+                    <% } %>
+                    <!-- <div class="selectBtns">
                         <h5 class="label poppins">Base</h5>
                         <div class="selectList">
                             <a class="selBtn" href="#">
@@ -71,10 +87,15 @@
                                 <li>비건(채소만)</li>
                             </ul>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="resultWrap">
-                    <div class="selectResult"></div>
+                    <div class="resultBox">
+                        <p class="resultItem">
+                            <span class="text">현미밥</span>
+                            <span class="material-symbols-outlined closeIcon">close</span>
+                        </p>
+                    </div>
                     <div class="resultValue">
                         <p>Total</p>
                         <h3><span>0</span>Kcal</h3>
