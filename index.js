@@ -130,7 +130,6 @@ app.get("/menu/drink", (req, res)=>{
 app.get("/menu/side", (req, res)=>{   
   res.render("menu/side.ejs", {login: req.user})
 })
-
 // nutrition 페이지
 app.get("/nutrition", (req, res)=>{
   let nutrition = [
@@ -144,61 +143,90 @@ app.get("/nutrition", (req, res)=>{
   res.render("etc/nutrition.ejs", {login: req.user, nutrition: nutrition})
 })
 
+// store List 페이지
+app.get("/store", (req, res)=>{   
+  db.collection("store").find().sort({storeCount: -1}).toArray((err, result)=>{
+    res.render("etc/store.ejs", {data: result, searchText: ""})
+  })
+})
+// store List 검색 경로
+app.get("/storeSearch", (req, res)=>{   
+  let check = [{
+    $search:{
+      index: "storeSearch",
+      text: {
+        query: req.query.search,
+        // 사용자가 직접 선택할 수 없어도 어떤 분류로 검색할 것인지는 받아와야 함
+        path: "storeName"
+      }
+    }
+  },{
+    $sort: {storeCount: -1}
+  }];
 
-
-// 어바웃어스 미디어 등록 경로
-app.get("/mediaUpload", (req, res)=>{
-  db.collection("count").findOne({title: "미디어"}, (err, mediaNum)=>{
-    db.collection("media").insertOne({
-      num: mediaNum.mediaCount,
-      mediaUpload: req.query.mediaUpload,
-    }, (err, result)=>{
-      db.collection("count").updateOne({title: "미디어"}, {$inc: {mediaCount:1}}, (err, result)=>{
-        res.redirect("/about");
+  db.collection("store").aggregate(check).toArray((err, result)=>{
+    res.render("etc/store.ejs",{data:result, searchText: req.query.search})
+  })
+})
+// store register 페이지
+app.get("/store/register", (req, res)=>{   
+  res.render("etc/store_register.ejs")
+})
+// store register 데이터 등록 경로
+app.get("/storeData", (req, res)=>{  
+  db.collection("count").findOne({title: "스토어"}, (err, storeCount)=>{
+    db.collection("store").insertOne({
+      storeCount: storeCount.storeCount,
+      storeName: req.query.storeName,
+      storeTel: req.query.storeTel,
+      storeAddress: req.query.storeAddress,
+      storeMap: req.query.storeMap,
+      storeLocation: req.query.storeLocation,
+    }, (err, result)=> {
+      db.collection("count").updateOne({title: "스토어"}, {$inc: {storeCount:1}}, (err, result)=> {
+        res.redirect("/store/register");
       })
     })
   })
 })
 
-// 게시판 전체 목록 페이지
-app.get("/board", (req, res)=>{
-
-  let testUrl = req.url
-
-  let testResult = testUrl.lastIndexOf("/");
-  let testString = testUrl.substring(testResult+1);
-
-  db.collection("board").find().sort({boardCount: -1}).toArray((err, result)=>{
-    res.render("board/board_list.ejs", {login: req.user, data: result, searchText: "", currentUrl: testString})
+// event 페이지
+app.get("/event", (req, res)=>{  
+  db.collection("board").find().sort({eventCount: -1}).toArray((err, result)=>{
+    res.render("etc/event.ejs", {data: result})
   })
 })
-// 게시판 Notice 목록 페이지
+// event 페이지
+app.get("/event/register", (req, res)=>{   
+  res.render("etc/event_register.ejs")
+})
+// event register 데이터 등록 경로
+const eventImgUpload = upload.fields([{name: 'eventThumb'}, {name: 'eventDetailImg'}]);
+app.post("/eventData", eventImgUpload, (req, res)=>{  
+  let eventThumbImg = [];
+  let detailImg = [];
 
-app.get("/board/category/:url", (req, res)=>{
+  for(let i = 0; i < req.files["eventThumb"].length; i++){
+    eventThumbImg[i] = req.files["eventThumb"][i].filename;
+  }
+  for(let i = 0; i < req.files["eventDetailImg"].length; i++){
+    detailImg[i] = req.files["eventDetailImg"][i].filename;
+  }
 
-  let testUrl = req.params.url
-
-  let testResult = testUrl.lastIndexOf("/");
-  let testString = testUrl.substring(testResult+1);
-
-
-  db.collection("board").find({boardCategory:testString}).sort({boardCount: -1}).toArray((err, result)=>{
-    res.render("board/board_list_category.ejs", {login: req.user, data: result,searchText: "", currentUrl: testString})
+  db.collection("count").findOne({title: "이벤트"}, (err, eventResult)=>{
+    db.collection("board").insertOne({
+      eventCount: eventResult.eventCount,
+      eventName: req.body.eventName,      
+      eventThumb: eventThumbImg,      
+      eventDetailImg: detailImg,      
+    }, (err, result)=>{
+      db.collection("count").updateOne({title: "이벤트"}, {$inc: {eventCount:1}}, (err, result)=>{
+        res.redirect(`/event`);
+      })
+    })
   })
 })
-// 게시판 Press 목록 페이지
-// app.get("/board/ddd/press", (req, res)=>{
-//   console.log(req.url)
 
-//   let testUrl = req.url
-
-//   let testResult = testUrl.lastIndexOf("/");
-//   let testString = testUrl.substring(testResult+1);
-
-//   db.collection("board").find().sort({boardCount: -1}).toArray((err, result)=>{
-//     res.render("board/board_list_press.ejs", {login: req.user, data: result, searchText: "",currentUrl:req.url})
-//   })
-// })
 // 게시판 목록 검색 데이터 전달
 app.get("/board/search", (req, res)=>{
   let currentUrlValue = req.query.currentUrl;
@@ -243,65 +271,8 @@ app.get("/board/search", (req, res)=>{
     res.render("board_list_category.ejs", {data: result, searchText:req.query.searchText, login: req.user, currentUrl:req.query.currentUrl})
   })
 })
-
-// 게시판 상세 페이지
-app.get("/board/detail/:num", (req, res)=>{ 
-  db.collection("board").findOne({boardCount: Number(req.params.num)}, (err, result)=>{  
-    res.render("board/board_detail.ejs", {login: req.user, data: result})
-  })
-})
-// 게시물 수정 페이지
-app.get("/board/update/:num", (req, res)=>{
-  db.collection("board").findOne({boardCount: Number(req.params.num)}, (err, result)=>{
-    res.render("board/board_update.ejs", {data: result, login: req.user})
-  })
-})
-// 게시물 수정 요청
-app.post("/board/update/data", upload.array("boardImg"), (req, res)=>{
-  let imgNames = [];
-  let changeDatas = {};
-
-  if(req.files.length > 0){
-    for(let i = 0; i < req.files.length; i++){
-      imgNames[i] = req.files[i].filename;
-    }
-
-    changeDatas = {
-      boardCategory : req.body.boardCategory,
-      boardDate : req.body.boardDate,
-      boardTitle : req.body.boardTitle,
-      boardImg : imgNames,
-      boardConts : req.body.boardConts,
-    }
-  }
-  else {
-    changeDatas = {
-      boardCategory : req.body.boardCategory,
-      boardDate : req.body.boardDate,
-      boardTitle : req.body.boardTitle,
-      boardConts : req.body.boardConts,
-    }
-  }
-
-  db.collection("board").updateOne({boardCount: Number(req.body.boardCount)}, {$set: changeDatas}, (err, result)=>{
-    res.redirect(`/board/detail/${req.body.boardCount}`)
-  })
-})
-
-// 게시물 삭제 요청
-app.get("/board/detail/delete/:num", (req, res)=>{
-  db.collection("board").deleteOne({boardCount: Number(req.params.num)}, (err, result)=>{
-    res.redirect("/board")
-  })
-})
-
-
-// 게시판 등록 페이지
-app.get("/board/upload", (req, res)=>{ 
-  res.render("board/board_upload.ejs", {login: req.user})
-})
 // 게시판 등록 데이터 전달
-const brdImgUpload = upload.fields([{name: 'boardImg'}]);
+const brdImgUpload = upload.fields([{name: 'boardImg'},]);
 
 app.post("/board/upload/data", brdImgUpload, (req, res)=>{   
   let brdImgs = [];

@@ -17,7 +17,7 @@
                 <div class="circle">
                     <span class="material-symbols-outlined circleIcon">calculate</span>
                 </div>
-                <h3 class="poppins">칼로리 계산기</h3>
+                <h3 class="poppins">메뉴 칼로리 계산기</h3>
             </div>
             <div class="bottom">
                 <div class="selectWrap">
@@ -27,8 +27,8 @@
                             <div class="selectList">
                                 <a class="selBtn" href="#">
                                     <%- nutrition[i].defaultText %>
-                                    <span class="material-symbols-outlined">expand_more</span>
                                 </a>
+                                <span class="material-symbols-outlined moreIcon">expand_more</span>
                                 <ul class="option">
                                     <% for( let a = 0; a < nutrition[i].list.length; a++ ) { %>
                                         <li><%- nutrition[i].list[a]%></li>
@@ -37,57 +37,6 @@
                             </div>
                         </div>
                     <% } %>
-                    <!-- <div class="selectBtns">
-                        <h5 class="label poppins">Base</h5>
-                        <div class="selectList">
-                            <a class="selBtn" href="#">
-                                베이스를 선택해주세요.
-                                <span class="material-symbols-outlined">expand_more</span>
-                            </a>
-                            <ul class="option">
-                                <li>현미밥</li>
-                                <li>메밀면</li>
-                                <li>채소만</li>
-                                <li>비건(현미밥)</li>
-                                <li>비건(메밀면)</li>
-                                <li>비건(채소만)</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="selectBtns">
-                        <h5 class="label poppins">Main Topping</h5>
-                        <div class="selectList">
-                            <a class="selBtn" href="#">
-                                메인토핑을 선택해주세요.
-                                <span class="material-symbols-outlined">expand_more</span>
-                            </a>
-                            <ul class="option">
-                                <li>현미밥</li>
-                                <li>메밀면</li>
-                                <li>채소만</li>
-                                <li>비건(현미밥)</li>
-                                <li>비건(메밀면)</li>
-                                <li>비건(채소만)</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="selectBtns">
-                        <h5 class="label poppins">Souce</h5>
-                        <div class="selectList">
-                            <a class="selBtn" href="#">
-                                소스를 선택해주세요.
-                                <span class="material-symbols-outlined">expand_more</span>
-                            </a>
-                            <ul class="option">
-                                <li>현미밥</li>
-                                <li>메밀면</li>
-                                <li>채소만</li>
-                                <li>비건(현미밥)</li>
-                                <li>비건(메밀면)</li>
-                                <li>비건(채소만)</li>
-                            </ul>
-                        </div>
-                    </div> -->
                 </div>
                 <div class="resultWrap">
                     <div class="resultBox">
@@ -101,6 +50,27 @@
                         <h3><span>0</span>Kcal</h3>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cont3 cont">
+        <div class="center">
+            <div class="top">
+                <div class="circle">
+                    <span class="material-symbols-outlined chartIcon">assignment</span>
+                </div>
+                <h3 class="poppins">포케 올데이 전체 칼로리표</h3>
+            </div>
+            <div class="bottom">
+                <p>보편적인 <span>성인 권장 일일 칼로리는 남성 2700kcal, 여성 2000kcal</span> 입니다.</p>
+                <p>하지만 개인의 나이, 기초대사량에 따라 권장 칼로리는 달라집니다.</p>
+                <p>본인에게 맞는 열량을 확인하고 다른 끼니의 열량을 고려하여 포케 올데이의 메뉴들을 선택해보세요.</p>
+                <p>더 건강하고 부담없는 하루를 보내실 수 있을 거예요.</p>                
+                <a class="download" href="/img/pokeAllDay_nutrition.pdf" target="_blank">
+                    <span>칼로리차트 다운로드</span>
+                    <span class="material-symbols-outlined downIcon">download</span>
+                </a>
             </div>
         </div>
     </div>

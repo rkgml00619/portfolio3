@@ -1,0 +1,50 @@
+<%- include('../common/header.ejs', jsFiles=[], cssFiles=[]) %>
+
+<div id="container" class="store_register">
+    <div class="cont1 cont">
+        <div class="center">
+            <h2 class="topTitle poppins">Store Resister</h2>
+            <p class="topSubTitle">
+                Poke All Day 매장 등록을 진행해주세요.
+            </p>
+        </div>
+    </div>
+
+    <div class="cont2 cont">
+        <div class="center">
+            <form id="storeRegister" action="/storeData" method="get">
+                <div class="contsWrap">
+                    <div class="inputWrap">
+                        <label for="storeName">매장명</label>
+                        <input type="text" name="storeName" id="storeName" value="Poke all day 포케&샐러드 ">
+                    </div>
+                    <div class="inputWrap">
+                        <label for="storeTel">전화번호</label>
+                        <input type="text" name="storeTel" id="storeTel">
+                    </div>
+                    <div class="inputWrap">
+                        <label for="storeAddress">주소</label>
+                        <input type="text" name="storeAddress" id="storeAddress">
+                    </div>
+                    <div class="inputWrap">
+                        <label for="storeMap">지도 주소</label>
+                        <input type="text" name="storeMap" id="storeMap">
+                    </div>
+                    <div class="inputWrap">
+                        <label for="storeLocation">길찾기 경로</label>
+                        <input type="text" name="storeLocation" id="storeLocation">
+                    </div>
+                </div>
+
+                <div class="btnWrap">
+                    <button type="submit">등록하기</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <%- include('../common/moveTop.ejs') %>
+</div>
+
+
+<%- include('../common/footer.ejs') %>

@@ -9,6 +9,8 @@ let resultClose = resultBox.querySelectorAll(".closeIcon");
 
 const totalKcal = document.querySelector("#container.nutrition .cont2 .center .bottom .resultWrap .resultValue h3 span")
 
+let totlaKcalValue = [];
+
 // 기존의 선택값 요소 삭제
 resultItemHtml.remove();
 
@@ -66,25 +68,23 @@ for(let i = 0; i < selOptionList.length; i++){
 
         resultBox.style.padding = "20px";
 
-        for(let i = 0; i < nutrition.length; i++){
+        // 선택한 optionList의 값을 찾아서 총 칼로리에 더함
+        for(let a = 0; a < nutrition.length; a++){
+            if(nutrition[a].list.includes(selOptionList[i].innerText)){
+                let fideIndex = nutrition[a].list.indexOf(selOptionList[i].innerText);
 
-            if(nutrition[i].list.includes(selOptionList[i].innerText)){
-                let fideIndex = nutrition[i].list.indexOf(selOptionList[i].innerText);
+                let valueIndex = nutrition[a].value[fideIndex];
 
-                let valueIndex = nutrition[i].value[fideIndex];
-
-                console.log(valueIndex)
-                totalKcal.innerText = valueIndex;
+                totalKcal.innerText = Number(totalKcal.innerText) + valueIndex;
             }
         }
-
-        // console.log(selIndex);
-        // console.log(selOptionList[i].innerText);
-        // totalKcal.innerText;
+        
+        // 선택한 옵션의 부모의 부모요소의 자식요소인 selBtn의 텍스트를 변경
+        selOptionList[i].parentElement.parentElement.querySelector(".selBtn").innerText = selOptionList[i].innerText;
     }
 }
 
-console.log(nutrition[0].list.indexOf("비건(현미밥)"))
+
 
 
 // 결과박스에 마우스 올렸을 때 요소 재선택 및 클로즈 버튼 클릭 시 요소 삭제
@@ -94,6 +94,17 @@ resultBox.onmouseenter = function(){
     for(let i = 0; i < resultClose.length; i++){
         resultClose[i].onclick = function(){
             resultClose[i].parentElement.remove();
+
+            // 선택한 resultClose의 부모요소의 자식요소인 .text의 칼로리값을 찾아서 총 칼로리값에서 감소
+            for(let a = 0; a < nutrition.length; a++){
+                if(nutrition[a].list.includes(resultClose[i].parentElement.querySelector(".text").innerText)){
+                    let fideIndex = nutrition[a].list.indexOf(resultClose[i].parentElement.querySelector(".text").innerText);
+    
+                    let valueIndex = nutrition[a].value[fideIndex];
+    
+                    totalKcal.innerText = Number(totalKcal.innerText) - valueIndex;
+                }
+            }
         }
     }
 }

@@ -8,7 +8,7 @@ $green : #5ac488;
     .circleImg {
         position: absolute;
         width: 260px; height: auto;
-        top: calc(100vh + 45vh); right: 60px;
+        top: calc(100vh + 10vh); right: calc(60px - 1vw);
         transition: all 1s;
         animation: circleImgRotate 15s linear infinite;
     }
@@ -40,7 +40,7 @@ $green : #5ac488;
                 position: absolute;
                 top: 90px; left: -30%;
                 width: auto; height: auto;
-                font-size: 80px;
+                font-size: calc(80px - 1vh);
                 opacity: 0;
                 transition: all 1s;
             }
@@ -48,7 +48,7 @@ $green : #5ac488;
                 position: absolute;
                 bottom: 90px; right: -50%;
                 width: auto; height: auto;
-                font-size: 120px;
+                font-size: calc(120px - 1vw);
                 color: $colorOrange;
                 opacity: 0;
                 transition: all 1s;
@@ -57,11 +57,11 @@ $green : #5ac488;
         }
         .designText.on {
             .leftTitle {
-                left: 6%;
+                left: calc(6% - 1vw);
                 opacity: 1;
             }
             .rightTitle {
-                right: 40%;
+                right: calc(40% - 1vw);
                 opacity: 1;
             }
         }
@@ -411,7 +411,7 @@ $green : #5ac488;
     #container.about { 
         .circleImg {
             width: 200px;
-            top: calc(100vh + 20vh); right: 60px;
+            top: calc(100vh + 20vh); right: calc(60px - 1vh);
         }
         .cont1 {
             width: 100%; height: 90vh;
@@ -425,20 +425,20 @@ $green : #5ac488;
             .designText {
                 .leftTitle {
                     top: 115px; 
-                    font-size: 60px;
+                    font-size: calc(60px - 1vw);
                 }
                 .rightTitle {
                     bottom: 115px; 
-                    font-size: 100px;
+                    font-size: calc(100px - 1vw);
                 }
     
             }
             .designText.on {
                 .leftTitle {
-                    left: 6%;
+                    left: calc(6% - 1vw);
                 }
                 .rightTitle {
-                    right: 30%;
+                    right: calc(30% - 1vw);
                 }
             }
             .center {
@@ -584,9 +584,15 @@ $green : #5ac488;
 
 @media screen and (max-width: 820px) {
     #container.about { 
+        .cont1 {
+            height: auto;
+            video {
+                width: 100%; height: auto;
+            }
+        }
         .circleImg {
             width: 200px;
-            top: calc(100vh + 10vh); right: calc(100% - 150px);
+            top: calc(100vw - 5vw); right: calc(100% - 150px);
         }
     
         .cont2 {
@@ -594,11 +600,11 @@ $green : #5ac488;
                 height: 300px;
                 .leftTitle {
                     top: 80px; 
-                    font-size: 50px;
+                    font-size: calc(50px - 1vw);
                 }
                 .rightTitle {
                     bottom: 80px; 
-                    font-size: 80px;
+                    font-size: calc(80px - 1vw);
                 }
     
             }
@@ -787,19 +793,19 @@ $green : #5ac488;
     #container.about { 
         .circleImg {
             width: 200px;
-            top: calc(100vh + 10vh); right: calc(100% - 150px);
+            top: calc(50vh + 6vh); right: calc(100% - 150px);
         }
     
         .cont2 {
             .designText {
                 height: 200px;
                 .leftTitle {
-                    top: 65px; 
-                    font-size: 20px;
+                    top: calc(65px - 1vw); 
+                    font-size: calc(30px - 1vw);
                 }
                 .rightTitle {
-                    bottom: 65px; 
-                    font-size: 40px;
+                    bottom: calc(65px - 1vw); 
+                    font-size: calc(50px - 1vw);
                     white-space: nowrap;
                     text-align: center;
                 }

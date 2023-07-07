@@ -1,0 +1,46 @@
+<%- include('../common/header.ejs', jsFiles=[], cssFiles=[]) %>
+
+<div id="container" class="event_register">
+    <div class="cont1 cont">
+        <div class="center">
+            <h2 class="topTitle poppins">Event Resister</h2>
+            <p class="topSubTitle">
+                Poke All Day 이벤트 등록을 진행해주세요.
+            </p>
+        </div>
+    </div>
+
+    <div class="cont2 cont">
+        <div class="center">
+            <form id="eventRegister" action="/eventData" method="post" enctype="multipart/form-data">
+                <div class="contsWrap">
+                    <div class="inputWrap">
+                        <label for="eventName">이벤트명</label>
+                        <input type="text" name="eventName" id="eventName">
+                    </div>
+                    <div class="inputWrap">
+                        <label for="eventThumb">썸네일 이미지</label>
+                        <input type="file" name="eventThumb" id="eventThumb">
+                    </div>
+                    <div class="inputWrap">
+                        <label for="eventDetailText">상세 내용</label>
+                        <textarea name="eventDetailText" id="eventDetailText"></textarea>
+                    </div>
+                    <div class="inputWrap">
+                        <label for="eventDetailImg">상세 이미지</label>
+                        <input type="file" name="eventDetailImg" id="eventDetailImg" multiple>
+                    </div>
+                </div>
+
+                <div class="btnWrap">
+                    <button type="submit">등록하기</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <%- include('../common/moveTop.ejs') %>
+</div>
+
+
+<%- include('../common/footer.ejs') %>

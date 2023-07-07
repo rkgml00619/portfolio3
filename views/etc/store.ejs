@@ -1,0 +1,162 @@
+<%- include('../common/header.ejs', jsFiles=["https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js", "/js/etc/store.js"], cssFiles=[]) %>
+
+<div id="container" class="store">
+    <div class="cont1 cont">
+        <div class="center">
+            <h2 class="topTitle poppins">STORE</h2>
+            <p class="topSubTitle">
+                가장 가까운 곳에서 Poke All Day를 만나보세요.
+            </p>
+        </div>
+    </div>
+
+    <div class="cont2 cont">
+        <div class="center">
+            <div class="left">
+                <div class="mapList">
+                    <% if (data) { %>
+                        <iframe src="<%-data[0].storeMap%>" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <% } %>
+                </div>
+            </div>
+            <div class="right">
+                <form id="storeSearch" action="/storeSearch" method="get">
+                    <div class="rightTop">
+                        <label for="search">매장찾기</label>
+                        <input type="text" name="search" id="search" value="<%-searchText%>">
+                        <button id="searchBtn" type="submit">
+                            <img src="/img/search_icon.svg">
+                        </button>
+                    </div>
+                    <div class="rightBottom">
+                        <% if (data) { %>
+                            <% for( let i = 0; i < data.length; i++ ) { %>
+                                <div class="storeList">
+                                    <div class="left" data-location="<%- data[i].storeMap %>">
+                                        <div class="imgWrap">
+                                            <img src="/img/store/store_img.jpg">
+                                        </div>
+                                        <div class="contextWrap">
+                                            <h3 class="storeTitle"><%-data[i].storeName%></h3>
+                                            <p class="address">
+                                                <span class="material-symbols-outlined storeIcon map">location_on</span>
+                                                <%-data[i].storeAddress%>
+                                            </p>
+                                            <p class="storeTel">
+                                                <span class="material-symbols-outlined storeIcon tel">call</span>
+                                                <%-data[i].storeTel%>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <a class="locationBtn" href="<%-data[i].storeLocation%>" target="_blank">길찾기</a>
+                                </div>
+                            <% } %>
+                        <% } else { %>
+                            <p>찾으시는 검색결과가 없습니다.</p>
+                        <% } %>
+                        <!-- <div class="storeList">
+                            <div class="left">
+                                <div class="imgWrap">
+                                    <img src="/img/store/store_img.jpg">
+                                </div>
+                                <div class="contextWrap">
+                                    <h3 class="storeTitle">Poke all day 포케&샐러드 신사점</h3>
+                                    <p class="address">
+                                        <span class="material-symbols-outlined storeIcon map">location_on</span>
+                                        서울 강남구 도산대로17길 11 지상 1층
+                                    </p>
+                                    <p class="storeTel">
+                                        <span class="material-symbols-outlined storeIcon tel">call</span>
+                                        0507-1334-0708
+                                    </p>
+                                </div>
+                            </div>
+                            <a class="locationBtn" href="#" target="_blank">길찾기</a>
+                        </div>
+                        <div class="storeList">
+                            <div class="left">
+                                <div class="imgWrap">
+                                    <img src="/img/store/store_img.jpg">
+                                </div>
+                                <div class="contextWrap">
+                                    <h3 class="storeTitle">Poke all day 포케&샐러드 신사점</h3>
+                                    <p class="address">
+                                        <span class="material-symbols-outlined storeIcon map">location_on</span>
+                                        서울 강남구 도산대로17길 11 지상 1층
+                                    </p>
+                                    <p class="storeTel">
+                                        <span class="material-symbols-outlined storeIcon tel">call</span>
+                                        0507-1334-0708
+                                    </p>
+                                </div>
+                            </div>
+                            <a class="locationBtn" href="#" target="_blank">길찾기</a>
+                        </div>
+                        <div class="storeList">
+                            <div class="left">
+                                <div class="imgWrap">
+                                    <img src="/img/store/store_img.jpg">
+                                </div>
+                                <div class="contextWrap">
+                                    <h3 class="storeTitle">Poke all day 포케&샐러드 신사점</h3>
+                                    <p class="address">
+                                        <span class="material-symbols-outlined storeIcon map">location_on</span>
+                                        서울 강남구 도산대로17길 11 지상 1층
+                                    </p>
+                                    <p class="storeTel">
+                                        <span class="material-symbols-outlined storeIcon tel">call</span>
+                                        0507-1334-0708
+                                    </p>
+                                </div>
+                            </div>
+                            <a class="locationBtn" href="#" target="_blank">길찾기</a>
+                        </div>
+                        <div class="storeList">
+                            <div class="left">
+                                <div class="imgWrap">
+                                    <img src="/img/store/store_img.jpg">
+                                </div>
+                                <div class="contextWrap">
+                                    <h3 class="storeTitle">Poke all day 포케&샐러드 신사점</h3>
+                                    <p class="address">
+                                        <span class="material-symbols-outlined storeIcon map">location_on</span>
+                                        서울 강남구 도산대로17길 11 지상 1층
+                                    </p>
+                                    <p class="storeTel">
+                                        <span class="material-symbols-outlined storeIcon tel">call</span>
+                                        0507-1334-0708
+                                    </p>
+                                </div>
+                            </div>
+                            <a class="locationBtn" href="#" target="_blank">길찾기</a>
+                        </div>
+                        <div class="storeList">
+                            <div class="left">
+                                <div class="imgWrap">
+                                    <img src="/img/store/store_img.jpg">
+                                </div>
+                                <div class="contextWrap">
+                                    <h3 class="storeTitle">Poke all day 포케&샐러드 신사점</h3>
+                                    <p class="address">
+                                        <span class="material-symbols-outlined storeIcon map">location_on</span>
+                                        서울 강남구 도산대로17길 11 지상 1층
+                                    </p>
+                                    <p class="storeTel">
+                                        <span class="material-symbols-outlined storeIcon tel">call</span>
+                                        0507-1334-0708
+                                    </p>
+                                </div>
+                            </div>
+                            <a class="locationBtn" href="#" target="_blank">길찾기</a>
+                        </div> -->
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../common/moveTop.ejs') %>
+</div>
+
+
+<%- include('../common/footer.ejs') %>

@@ -1,0 +1,39 @@
+<%- include('../common/header.ejs', jsFiles=["https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js", "/js/etc/store.js"], cssFiles=[]) %>
+
+<div id="container" class="event">
+    <div class="cont1 cont">
+        <div class="center">
+            <h2 class="topTitle poppins">EVENT</h2>
+            <p class="topSubTitle">
+                Poke All Day의 다양한 이벤트를 확인해보세요.
+            </p>
+        </div>
+    </div>
+
+    <div class="cont2 cont">
+        <div class="center">
+            <div class="eventListWrap">
+                <% if (data) { %>
+                    <% for( let i = 0; i < data.length; i++ ) { %>
+                        <div class="eventList">
+                            <a href="#">
+                                <div class="imgWrap">
+                                    <img src="/upload/<%-data[i].eventThumb[0]%>">
+                                </div>
+
+                                <div class="contextWrap">
+                                    <h3 class="eventTitle"><%-data[i].eventName%></h3>
+                                </div>
+                            </a>
+                        </div>
+                    <% } %>
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../common/moveTop.ejs') %>
+</div>
+
+
+<%- include('../common/footer.ejs') %>
