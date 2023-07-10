@@ -98,7 +98,9 @@ const upload = multer({ storage: storage })
 
 // 메인 페이지
 app.get('/', (req, res) => {
-  res.render("index.ejs", {login: req.user})
+  db.collection("board").find().sort({eventCount: -1}).toArray((err, result)=>{
+    res.render("index.ejs", {data: result})
+  })
 })
 
 // brand의 about us 페이지
@@ -192,11 +194,37 @@ app.get("/storeData", (req, res)=>{
 
 // event 페이지
 app.get("/event", (req, res)=>{  
-  db.collection("board").find().sort({eventCount: -1}).toArray((err, result)=>{
-    res.render("etc/event.ejs", {data: result})
+  db.collection("board").find().toArray((err, total)=>{
+    let totalData = total.length;
+    let pageNumber = (req.query.page == null) ? 1 : Number(req.query.page);
+    let perPage = 9;
+    let blockCount = 5;
+    let blockNum = Math.ceil(pageNumber / blockCount);
+    let blockStart = ((blockNum - 1) * blockCount) + 1;
+    let blockEnd = blockStart + blockCount - 1;
+    let totalPaging = Math.ceil(totalData / perPage);
+
+    if(blockEnd > totalPaging){
+      blockEnd = totalPaging;
+    }
+
+    let totalBlock = Math.ceil(totalPaging / blockCount);
+    let startFrom = (pageNumber - 1) * perPage;
+
+    db.collection("board").find().sort({eventCount : -1}).skip(startFrom).limit(perPage).toArray((err, result)=>{
+      res.render("etc/event.ejs", {
+        data: result,
+        totalPaging: totalPaging,
+        blockStart: blockStart,
+        blockEnd: blockEnd,
+        blockNum: blockNum,
+        totalBlock: totalBlock,
+        pageNumber: pageNumber
+      })
+    })
   })
 })
-// event 페이지
+// event 등록 페이지
 app.get("/event/register", (req, res)=>{   
   res.render("etc/event_register.ejs")
 })
@@ -216,7 +244,9 @@ app.post("/eventData", eventImgUpload, (req, res)=>{
   db.collection("count").findOne({title: "이벤트"}, (err, eventResult)=>{
     db.collection("board").insertOne({
       eventCount: eventResult.eventCount,
-      eventName: req.body.eventName,      
+      eventName: req.body.eventName,
+      eventDetailText: req.body.eventDetailText,
+      registerDate: req.body.registerDate,
       eventThumb: eventThumbImg,      
       eventDetailImg: detailImg,      
     }, (err, result)=>{
@@ -226,287 +256,9 @@ app.post("/eventData", eventImgUpload, (req, res)=>{
     })
   })
 })
-
-// 게시판 목록 검색 데이터 전달
-app.get("/board/search", (req, res)=>{
-  let currentUrlValue = req.query.currentUrl;
-  console.log(currentUrlValue)
-  let check = [];
-  if(currentUrlValue === "board"){
-    check = [
-      {
-        $search: {
-          index: "mlb_board_search",
-          text: {
-            query: req.query.searchText,
-            path: [req.query.searchOption]
-          }
-        }
-      },
-      {
-        $sort: {boardCount: -1}
-      }
-    ]
-  }
-  else {
-    check = [
-      {
-        $search: {
-          index: "mlb_board_search",
-          text: {
-            query: req.query.searchText,
-            path: [req.query.searchOption]
-          }
-        }
-      },
-      {
-        $sort: {boardCount: -1}
-      },
-      {
-        $match: { boardCategory: currentUrlValue }
-      }
-    ]
-  }
-  db.collection("board").aggregate(check).toArray((err, result)=>{
-    res.render("board_list_category.ejs", {data: result, searchText:req.query.searchText, login: req.user, currentUrl:req.query.currentUrl})
-  })
-})
-// 게시판 등록 데이터 전달
-const brdImgUpload = upload.fields([{name: 'boardImg'},]);
-
-app.post("/board/upload/data", brdImgUpload, (req, res)=>{   
-  let brdImgs = [];
-
-  if(req.files.length > 0){
-    for(let i = 0; i < req.files.length; i++){
-      brdImgs[i] = req.files[i].filename;
-    }
-  }
-  db.collection("count").findOne({title: "게시판"}, (err, boardNum)=>{   
-    // console.log(boardNum);
-    db.collection("board").insertOne({      
-      boardCount: boardNum.boardCount,
-      boardCategory: req.body.boardCategory,
-      memberId: req.body.memberId,
-      boardDate: req.body.boardDate,
-      boardTitle: req.body.boardTitle,
-      boardImg: brdImgs,
-      boardConts: req.body.boardConts,
-    }, (err, result)=>{
-      db.collection("count").updateOne({title: "게시판"}, {$inc: {boardCount: 1}}, (err, result)=>{
-        res.redirect(`/board/detail/${boardNum.boardCount}`)
-      })
-    })
-  })
-})
-
-
-// 제품 목록
-app.get('/shop/:category', (req, res) => {
-  db.collection("product").findOne({category: req.params.category}, (err, result)=>{
-    db.collection("product").find().toArray((err, total)=>{
-      let categoryClothes = [];
-      let categoryAcc = [];
-      let totalData;
-
-      for(let i = 0; i < total.length; i++){
-        if(total[i].category === "clothes"){
-          categoryClothes[categoryClothes.length] = total[i]
-        }
-        else if(total[i].category === "acc"){
-          categoryAcc[categoryAcc.length] = total[i]
-        }
-      }
-
-      if(req.params.category === "clothes"){
-        totalData = categoryClothes.length;
-      }
-      else if(req.params.category === "acc"){
-        totalData = categoryAcc.length;
-      }            
-      let pageNumber = (req.query.page == null) ? 1 : Number(req.query.page);
-      let perPage = 16; // 한페이지에서 보여질 상품갯수
-      let blockCount = 5; // 한페이지에서 보여질 페이지 넘버 갯수
-      let blockNum = Math.ceil(pageNumber / blockCount);
-      let blockStart = ((blockNum - 1) * blockCount) + 1;
-      let blockEnd = blockStart + blockCount - 1;
-      let totalPaging = Math.ceil(totalData / perPage);
-
-      if(blockEnd > totalPaging){
-        blockEnd = totalPaging;
-      }
-
-      let totalBlock = Math.ceil(totalPaging / blockCount)
-      let startFrom = (pageNumber - 1) * perPage;
-
-      db.collection("product").find().sort({num: -1}).skip(startFrom).limit(perPage).toArray((err, result)=>{
-        res.render("shop/shop_list.ejs", {
-          data: result,
-          totalPaging: totalPaging,
-          blockStart : blockStart,
-          blockEnd : blockEnd,
-          blockNum : blockNum,
-          totalBlock : totalBlock,
-          pageNumber : pageNumber,
-          login: req.user
-        })
-      })
-    })
-  })
-})
-
-// 제품 등록
-app.get('/shop/edit/register', (req, res) => {
-  res.render("shop/shop_register.ejs", {login: req.user})
-})
-
-// 제품 등록 데이터
-const cpUpload = upload.fields([{ name: 'prdImg'}, {name: 'addPrdImg'} ,{ name: 'detailImg'}]);
-app.post("/shop/edit/register/data",cpUpload,(req,res)=>{
-  // console.log(req.files["addPrdImg"])
-
-  let prdImgs = [];
-  let addPrdImgs = [];
-  let detailImgs = [];
-
-  for(let i = 0; i < req.files["prdImg"].length; i++){
-    prdImgs[i] = req.files["prdImg"][i].filename;
-  }
-
-  for(let i = 0; i < req.files["addPrdImg"].length; i++){
-    addPrdImgs[i] = req.files["addPrdImg"][i].filename;
-  }
-
-  for(let i = 0; i < req.files["detailImg"].length; i++){
-    detailImgs[i] =  req.files["detailImg"][i].filename;
-  }
-
-  db.collection("count").findOne({title: "상품갯수"}, (err, countResult)=>{
-    db.collection("product").insertOne({
-      num: countResult.num,
-      category: req.body.category,
-      prdName: req.body.prdName,
-      prdImg : prdImgs,
-      addPrdImg : addPrdImgs,
-      detailImg: detailImgs,
-      detailTxt: req.body.detailTxt,
-      price: req.body.price,
-      color: req.body.color,
-      size: req.body.size,
-      
-    }, (err, result)=>{
-      db.collection("count").updateOne({title: "상품갯수"}, {$inc: {num:1}}, (err, result)=>{
-        res.redirect(`/shop/detail/${countResult.num}`);
-      })
-    })
-  })
-})
-
-// 제품 상세
-app.get('/shop/detail/:num', (req, res) => {  
-  db.collection("product").findOne({num: Number(req.params.num)}, (err, result)=>{
-
-    // color 값을 무조건 배열로 가져올 수 있도록
-    if (result && typeof result.color === 'string') {
-      result.color = [result.color]; 
-    }
-    // console.log(result.detailImg);
-    res.render("shop/shop_detail.ejs", {data: result, login: req.user});
-  })
-})
-
-
-
-// 회원가입 페이지
-app.get("/members/join", (req, res) => {
-  res.render("members/join.ejs", {login: req.user})
-})
-
-//아이디 중복체크 요청
-app.post("/idcheck",(req,res)=>{
-  db.collection("members").findOne({memberId: req.body.memberId}, (err, member)=>{
-       res.send({member:member})
-  })
-})
-//비밀번호 중복체크 요청
-app.post("/passCheck",(req,res)=>{
-  db.collection("members").findOne({memberPass: req.body.memberPass}, (err, member)=>{
-       res.send({member:member})
-  })
-})
-
-// 회원가입 데이터
-app.post("/members/join/data", (req, res)=>{
-  db.collection("members").findOne({memberId: req.body.memberId}, (err, member)=>{
-    db.collection("count").findOne({title: "회원"}, (err, result)=>{
-      db.collection("members").insertOne({
-        memberNo: result.memberCount,
-        memberName: req.body.memberName,
-        memberTel_one: req.body.memberTel_one,
-        memberTel: req.body.memberTel,
-        memberTel_three: req.body.memberTel_three,
-        memberEmail: req.body.memberEmail,
-        emailTextSel: req.body.emailTextSel,
-        memberId: req.body.memberId,
-        memberPass: req.body.memberPass,
-      }, (err, result)=>{
-        db.collection("count").updateOne({title: "회원"}, {$inc: {memberCount: 1}}, (err)=>{
-            res.send("<script> alert('회원가입 완료'); location.href ='/members/join' </script>")
-        })
-      })
-    })
-  })
-});
-
-// 로그인
-app.get("/members/login", (req, res) => {  
-  // 로그인 페이지(ejs)파일에서 input (type=hidden / name=referer)을 만들어서 이전 경로를 삽입하고
-  res.render("members/login.ejs", {login: req.user, referer:req.headers.referer})
-})
-// 로그인 처리 요청 경로
-app.post("/logincheck", passport.authenticate('local', {failureRedirect : '/members/login'}), (req, res)=>{
-  // 로그인 처리 요청 경로에서 이전 경로에 대한
-  if (req.body.referer && (req.body.referer !== undefined && req.body.referer.slice(-6) !== "/login")) {
-    res.redirect(req.body.referer);
-  } else {
-    res.redirect("/");
-  }
-})
-// 로그아웃 처리 요청 경로
-app.get("/logout", (req, res)=>{
-  req.logout(()=>{
-    // 로그아웃 시 이전 경로로 돌아가기
-    res.send(`<script>
-      if(document.referrer.includes("mypage")){
-        window.location = "/";
-      }
-      else {
-        window.location = document.referrer;
-      }
-    </script>`);
-  })
-})
-
-// 마이페이지
-app.get("/members/mypage", (req, res) => {
-  res.render("members/myPage.ejs", {login: req.user})
-})
-// 마이페이지 수정
-app.get("/members/mypage/edit", (req, res) => {
-  res.render("members/mypageEdit.ejs", {login: req.user})
-})
-// 마이페이지 수정된 데이터 업데이트
-app.post("/members/mypage/editUpdate", (req, res) => {
-  console.log(req.body.memberTel_one);
-  db.collection("members").updateOne({memberId: req.user.memberId}, {$set: {
-    memberName: req.body.memberName,
-    memberPass: req.body.changePass,
-    memberTel_one: req.body.memberTel_one,
-    memberTel: req.body.memberTel,
-    memberTel_three: req.body.memberTel_three,
-    memberEmail: req.body.memberEmail,
-    emailTextSel: req.body.emailTextSel,
-  }}, (err, result)=>{
-    res.redirect("/members/login");
+// event detail 페이지
+app.get("/event/detail/:eventCount", (req, res)=>{
+  db.collection("board").findOne({eventCount: Number(req.params.eventCount)}, (err, result)=> {
+    res.render("etc/event_detail.ejs", {data: result})
   })
 })

@@ -19,16 +19,20 @@
                         <input type="text" name="eventName" id="eventName">
                     </div>
                     <div class="inputWrap">
+                        <label for="registerDate">등록일</label>
+                        <input type="date" name="registerDate" id="registerDate">
+                    </div>
+                    <div class="inputWrap">
                         <label for="eventThumb">썸네일 이미지</label>
                         <input type="file" name="eventThumb" id="eventThumb">
                     </div>
                     <div class="inputWrap">
-                        <label for="eventDetailText">상세 내용</label>
-                        <textarea name="eventDetailText" id="eventDetailText"></textarea>
-                    </div>
-                    <div class="inputWrap">
                         <label for="eventDetailImg">상세 이미지</label>
                         <input type="file" name="eventDetailImg" id="eventDetailImg" multiple>
+                    </div>
+                    <div class="inputWrap">
+                        <label for="eventDetailText">상세 내용</label>
+                        <textarea name="eventDetailText" id="eventDetailText"></textarea>
                     </div>
                 </div>
 
@@ -41,6 +45,19 @@
 
     <%- include('../common/moveTop.ejs') %>
 </div>
+
+<script>
+    const registerDate = document.querySelector("#container.event_register .cont2 .center #eventRegister .contsWrap .inputWrap input#registerDate");
+
+    let today = new Date();
+    let year = today.getFullYear();
+    let month = today.getMonth() + 1;
+    let dates = today.getDate();  
+
+    let todayValue = year + "-" + ("0" + month) + "-" + dates;
+    
+    registerDate.value = todayValue;
+</script>
 
 
 <%- include('../common/footer.ejs') %>

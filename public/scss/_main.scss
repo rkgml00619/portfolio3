@@ -309,10 +309,15 @@
                         p {
                             width: 100%;
                             font-size: 18px;
-                            line-height: 1.4;
+                            line-height: 1.6;
                             word-break: keep-all;
                             color: #000;
                             margin-bottom: 40px;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            display: -webkit-box;
+                            -webkit-line-clamp: 4;
+                            -webkit-box-orient: vertical;
                         }
                         span.arrowIcon {
                             display: block;
@@ -459,6 +464,7 @@
                                 font-size: 16px;
                                 margin-bottom: 20px;
                                 color: #000;
+                                -webkit-line-clamp: 2;
                             }
                             span.arrowIcon {
                                 width: 40px; height: 40px;

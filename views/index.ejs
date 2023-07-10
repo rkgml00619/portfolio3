@@ -127,7 +127,23 @@
                 </a>
             </div>
             <div class="eventList">
-                <div class="list">
+                <% if (data) { %>
+                    <% for( let i = 0; i < 6; i++ ) { %>
+                        <div class="list">
+                            <a href="/event/detail/<%- data[i].eventCount %>">
+                                <div class="imgWrap">
+                                    <img src="/upload/<%- data[i].eventThumb %>">
+                                </div>
+                                <div class="textWrap">
+                                    <h3><%- data[i].eventName %></h3>
+                                    <p><%- data[i].eventDetailText %></p>
+                                    <span class="material-symbols-outlined arrowIcon">arrow_forward</span>
+                                </div>
+                            </a>
+                        </div>
+                    <% } %>
+                <% } %>
+                <!-- <div class="list">
                     <a href="#">
                         <div class="imgWrap">
                             <img src="/img/event1.jpg" alt="">
@@ -198,7 +214,7 @@
                             <span class="material-symbols-outlined arrowIcon">arrow_forward</span>
                         </div>
                     </a>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

@@ -16,7 +16,7 @@
                 <% if (data) { %>
                     <% for( let i = 0; i < data.length; i++ ) { %>
                         <div class="eventList">
-                            <a href="#">
+                            <a href="/event/detail/<%-data[i].eventCount%>">
                                 <div class="imgWrap">
                                     <img src="/upload/<%-data[i].eventThumb[0]%>">
                                 </div>
@@ -31,6 +31,24 @@
             </div>
         </div>
     </div>
+
+    <ul class="paging poppins">
+        <% if (blockStart > totalBlock) { %>
+            <li><a href="?page=<%-blockStart%>">이전</a></li>
+        <% } %>
+
+        <% for( let i = blockStart; i <= blockEnd; i++ ) { %>
+            <% if (pageNumber == i) { %>
+                <li class="on"><a href="?page=<%- i %>"><%- i %></a></li>
+            <% } else { %>
+                <li><a href="?page=<%- i %>"><%- i %></a></li>
+            <% } %>
+        <% } %>
+
+        <% if (blockNum < totalBlock) { %>
+            <li><a href="?page=<%- blockEnd + 1 %>">다음</a></li>
+        <% } %>
+    </ul>
 
     <%- include('../common/moveTop.ejs') %>
 </div>
