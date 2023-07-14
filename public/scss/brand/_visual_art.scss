@@ -106,8 +106,11 @@ $green : #5ac488;
                                 }
                             }
                             .downBtn {
-                                display: inline-block;
-                                padding: 20px 30px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                width: 70px; height: 70px;
+                                border-radius: 100%;
                                 border: 1px solid #fff;
                                 position: absolute;
                                 top: 50%; left: 50%;
@@ -117,8 +120,9 @@ $green : #5ac488;
                                 z-index: 20;
                                 opacity: 0;
                                 transition: all 0.5s;
-                                &:hover {
-                                    border-radius: 0 0 20px 0;
+                                span.plusIcon {
+                                    font-size: 40px;
+                                    font-variation-settings: 100;
                                 }
                             }
                             .overlay {
@@ -167,6 +171,123 @@ $green : #5ac488;
             }
         }
     }
+    .posterModal {
+        width: 100%; height: 100%;
+        position: fixed;
+        top: 0; left: 0;
+        background: rgba(0,0,0,0.4);
+        z-index: 99999;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        backdrop-filter: blur(10px) grayscale(1);
+        opacity: 0;
+        transition: all 0.4s;
+        .center {
+            width: auto; height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            .closeBtn {
+                position: absolute;
+                top: 0; right: -3vw;
+                width: 50px; height: 50px;
+                border-radius: 100%;
+                border: 1px solid #fff;
+                background: transparent;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.4s;
+                &:hover {
+                    background: #fff;
+                    span.closeIcon {
+                        color: $colorOrange;
+                    }
+                }
+                span.closeIcon {
+                    color: #fff;
+                    font-size: 30px;
+                    transition: all 0.4s;
+                }
+            }
+            .bigPoster {
+                height: 100%;
+                margin-right: 20px;
+                position: relative;
+                background: #fff;
+                img {
+                    height: 100%;
+                }
+                .down {
+                    position: absolute;
+                    bottom: 20px; left: 20px;
+                    color: #fff;
+                    width: 150px; height: 50px;
+                    background: $colorOrange;
+                    border: 1px solid #fff;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    backdrop-filter: blur(10px);
+                    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+                    z-index: 20;
+                    transition: all 0.4s;
+                    &:hover {
+                        color: $colorOrange;
+                        background: #fff;
+                    }
+                }
+            }
+            .posterListWrap {
+                width: 40%; height: 100%;
+                overflow: hidden;
+                overflow-y: auto;
+                display: grid;
+                grid-template-columns: repeat(auto-fill, calc((100% / 3) - 5px));
+                justify-content: space-between;
+                padding: 20px;
+                box-sizing: border-box;
+                background: #fff;
+                &::-webkit-scrollbar {
+                    width: 6px;
+                    background: #fff;
+                }
+                &::-webkit-scrollbar-thumb {
+                    background: $colorOrange;
+                }
+                .posterList {
+                    width: calc(100%);
+                    margin-bottom: 10px;
+                    transition: all 0.4s;
+                    cursor: pointer;
+                    &:hover {
+                        img {
+                            filter: grayscale(0);
+                            opacity: 1;
+                        }
+                    }
+                    img {
+                        width: 100%;
+                        filter: grayscale(1);
+                        opacity: 0.6;
+                        transition: all 0.4s;
+                    }
+                }
+                .posterList.on {
+                    img {
+                        filter: grayscale(0);
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+
+    }
+    .posterModal.on {
+        display: flex;
+    }
 }
 
 @media screen and (max-width: 1200px) {
@@ -207,20 +328,15 @@ $green : #5ac488;
                     .tabconts {
                         .tabListWrap {
                             .tabList.poster {
-                                &:hover {
-                                    .downBtn {
-                                        transform: translate(0, 0) scale(1);
-                                    }
-                                }
                                 .downBtn {
-                                    padding: 15px 20px;
-                                    top: calc(100% - 60px); left: 4%;
-                                    transform: translate(0, 0) scale(1);
-                                    font-size: 14px;
+                                    width: 60px; height: 60px;
                                     opacity: 1;
                                     box-shadow: 5px 5px 10px rgba(0,0,0,0.4);
                                     text-shadow: 0 0 10px rgba(0,0,0,0.8);
                                     backdrop-filter: blur(20px);
+                                    span.plusIcon {
+                                        font-size: 30px;
+                                    }
                                 }
                             }
                             .tabList.goods {
@@ -267,6 +383,35 @@ $green : #5ac488;
             .tabList {
                 margin-bottom : 10px
             }
+        }
+        
+        .posterModal {
+            .center {
+                flex-direction: column;
+                width: 60%;
+                margin-top: 6vh;
+                .closeBtn {
+                    top: -6vh; right: 50%;
+                    transform: translateX(50%);
+                }
+                .bigPoster {
+                    margin-right: 0;
+                    height: auto;
+                    width: 100%;
+                    img {
+                        height: auto;
+                        width: 100%;
+                    }
+                    .down {
+                        bottom: 20px; left: 50%;
+                        transform: translateX(-50%);
+                    }
+                }
+                .posterListWrap {
+                    width: 100%; height: 20vh;
+                }
+            }
+
         }
     }
 }
@@ -349,6 +494,47 @@ $green : #5ac488;
                     }
                 }
             }
+        }
+        
+        .posterModal {
+            .center {
+                width: 70%;
+                margin-top: 6vh;
+                .closeBtn {
+                    top: -8vh; right: 50%;
+                    width: 40px; height: 40px;
+                    transform: translateX(50%);
+                    span.closeIcon {
+                        color: #fff;
+                        font-size: 30px;
+                        transition: all 0.4s;
+                    }
+                }
+                .bigPoster {
+                    margin-right: 0;
+                    height: auto;
+                    width: 100%;
+                    img {
+                        height: auto;
+                        width: 100%;
+                    }
+                    .down {
+                        bottom: 10px; left: 10px;
+                        transform: translateX(0);
+                        width: 45px; height: 45px;
+                        font-size: 15px;
+                        border-radius: 100%;
+                        backdrop-filter: blur(0);
+                        box-shadow: none;
+                    }
+                }
+                .posterListWrap {
+                    width: 100%; height: 30vh;
+                    grid-template-columns: repeat(auto-fill, calc((100% / 4) - 5px));
+                    padding: 10px;
+                }
+            }
+
         }
     }
 }

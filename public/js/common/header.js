@@ -126,7 +126,7 @@ moveTop.onclick = function(e){
     e.preventDefault();
     
     window.scrollTo({
-        top: positionTop[0].offsetTop,
+        top: header.offsetTop,
         behavior: "smooth"
     })
 }

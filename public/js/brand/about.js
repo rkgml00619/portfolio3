@@ -18,7 +18,6 @@ window.addEventListener("load", function(){
     // cont3의 offsetTop값 배열에 담음
     cont3.forEach(function(cont3, idx){
         cont3Top[idx] = cont3.offsetTop;
-        cont3.style.opacity = "0";
     });
     // 탭 콘텐츠의 높이값 배열에 담음
     aboutTabConts.forEach(function(tabConts, idx){
@@ -35,7 +34,6 @@ window.addEventListener("resize", function(){
     // cont3의 offsetTop값 배열에 담음
     cont3.forEach(function(cont3, idx){
         cont3Top[idx] = cont3.offsetTop;
-        cont3.style.opacity = "0";
     });
     // 탭 콘텐츠의 높이값 배열에 담음
     aboutTabConts.forEach(function(tabConts, idx){
@@ -58,12 +56,14 @@ window.addEventListener("scroll", function(){
     
     // cont3 섹션들 스크롤에 따라 등장
     for(let i = 0; i < cont3Top.length; i++){
-        if(windowPosition >= cont3Top[i] - 200){
+        if(windowPosition >= cont3Top[i] + 200){
             cont3[i].style.opacity = "1";
         }
-        else {
+        else if(windowPosition < cont3Top[i] + 200){
             cont3[i].style.opacity = "0";
         }
+
+        console.log(cont3[i].offsetTop);
     }
 });
 

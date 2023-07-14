@@ -19,13 +19,13 @@
                     <div class="tabListWrap on poster">
                         <% for( let i = 1; i < 12; i++ ) { %>
                             <div class="tabList poster">
-                                <a href="/img/brand/visual_art/poster/poster<%-i%>.jpg" download="">
+                                <a href="#">
                                     <div class="overlay"></div>
     
                                     <img src="/img/brand/visual_art/poster/poster<%-i%>.jpg">
     
                                     <span class="downBtn poppins">
-                                        Download
+                                        <span class="material-symbols-outlined plusIcon">add</span>
                                     </span>
                                 </a>
                             </div>
@@ -40,6 +40,25 @@
                         <% } %> 
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="posterModal">
+        <div class="center">
+            <a class="closeBtn" href="#">
+                <span class="material-symbols-outlined closeIcon">close</span>
+            </a>
+            <div class="bigPoster">
+                <a class="down poppins" href="#" download="">Download</a>
+                <img src="/img/brand/visual_art/poster/poster1.jpg">
+            </div>
+            <div class="posterListWrap">
+                <% for( let i = 1; i < 12; i++ ) { %>
+                    <div class="posterList">
+                        <img src="/img/brand/visual_art/poster/poster<%-i%>.jpg">
+                    </div>
+                <% } %>
             </div>
         </div>
     </div>

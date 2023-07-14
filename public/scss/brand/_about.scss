@@ -229,6 +229,7 @@ $green : #5ac488;
         display: flex;
         justify-content: center; 
         margin-bottom: 80px;
+        opacity: 0;
         transition: all 0.5s;
         .center {
             width: $center;
@@ -265,11 +266,16 @@ $green : #5ac488;
                     .rightCont {
                         margin-bottom: 80px;
                         h3 {
-                            font-size: 30px;
+                            font-size: calc(1vw + 1vh + 0.5vmin);
                             letter-spacing: -0.5px;
                             word-break: keep-all;
                             line-height: 1.4;
                             margin-bottom: 30px;
+                            color: $colorGreen;
+                            span {
+                                font-weight: 400;
+                                color: #333;
+                            }
                         }
                         .project {
                             font-size: 20px;
@@ -374,6 +380,14 @@ $green : #5ac488;
                         background: linear-gradient(to left, $colorOrange, rgba(234, 105, 71, 0.1));
                         -webkit-background-clip: text;
                     }
+                    .rightCont {
+                        p {
+                            padding-left: 10%;
+                        }
+                        p.project {
+                            padding-left: 0;
+                        }
+                    }
                 }
             }
         }
@@ -390,12 +404,34 @@ $green : #5ac488;
                         background: linear-gradient(to right, $colorOrange, rgba(234, 105, 71, 0.1));
                         -webkit-background-clip: text;
                     }
+                    .rightCont {
+                        &:last-child {
+                            h3 {
+                                color: #555;
+                                line-height: 1.2;
+                            }
+                        }
+                        h3 {
+                            span {
+                                font-size: calc(0.8vw + 0.8vh + 0.5vmin);
+                            }
+                        }
+                        > p {
+                            padding-right: 10%;
+                        }
+                        p.project {
+                            padding-right: 0;
+                        }
+                    }
                 }
             }
         }
     }
     .cont3.list3 {
         margin-bottom: 150px;
+        .center .content .textWrap .rightCont h3 {
+            color: #555;
+        }
     }
 
     .cont4 {
@@ -676,7 +712,7 @@ $green : #5ac488;
                                 font-size: 24px;
                                 margin-bottom: 30px;
                             }
-                            .project {
+                            p.project {
                                 font-size: 18px;
                             }
                             p {
@@ -749,6 +785,11 @@ $green : #5ac488;
                             background: linear-gradient(to right, $colorOrange, rgba(234, 105, 71, 0.1));
                             -webkit-background-clip: text;
                         }
+                        .rightCont {
+                            p {
+                                padding-left: 0;
+                            }
+                        }
                     }
                 }
             }
@@ -765,6 +806,11 @@ $green : #5ac488;
                             color: transparent;
                             background: linear-gradient(to right, $colorOrange, rgba(234, 105, 71, 0.1));
                             -webkit-background-clip: text;
+                        }
+                        .rightCont {
+                            p {
+                                padding-right: 0;
+                            }
                         }
                     }
                 }
