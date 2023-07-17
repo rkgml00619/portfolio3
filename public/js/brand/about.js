@@ -53,17 +53,27 @@ window.addEventListener("scroll", function(){
     else {
         designText.classList.remove("on");
     }
-    
-    // cont3 섹션들 스크롤에 따라 등장
-    for(let i = 0; i < cont3Top.length; i++){
-        if(windowPosition >= cont3Top[i] + 200){
-            cont3[i].style.opacity = "1";
-        }
-        else if(windowPosition < cont3Top[i] + 200){
-            cont3[i].style.opacity = "0";
-        }
 
-        console.log(cont3[i].offsetTop);
+    // cont3 섹션들 스크롤에 따라 등장
+    if(pc.matches){
+        for(let i = 0; i < cont3Top.length; i++){
+            if(windowPosition >= cont3Top[i] + 200){
+                cont3[i].style.opacity = "1";
+            }
+            else if(windowPosition < cont3Top[i] + 200){
+                cont3[i].style.opacity = "0";
+            }
+        }
+    }
+    else {
+        for(let i = 0; i < cont3Top.length; i++){
+            if(windowPosition >= cont3Top[i] - 100){
+                cont3[i].style.opacity = "1";
+            }
+            else if(windowPosition < cont3Top[i] - 100){
+                cont3[i].style.opacity = "0";
+            }
+        }
     }
 });
 
