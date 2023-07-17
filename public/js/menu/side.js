@@ -7,7 +7,7 @@ let sideMenu = [
   {img: "pumpkin.png", title: "단호박 스프", text: "Sweet Pumpkin Soup"},
   {img: "mushroom.png", title: "양송이 스프", text: "Mushroom Soup"},
   {img: "Kohlslow.png", title: "코울슬로", text: "Kohlslow"},
-  {img: "seaWrap.png", title: "씨랩", text: "Sea Wrap"},
+  {img: "SeaWrap.png", title: "씨랩", text: "Sea Wrap"},
   {img: "meetWrap.png", title: "미트랩", text: "Meet Wrap"},
   {img: "noodleSalad.png", title: "들기름 메밀면 샐러드", text: "Perilla Oil Soba Noodles Salad"},
   {img: "tofuRoll.png", title: "두부롤", text: "Tofu Rolled"},
